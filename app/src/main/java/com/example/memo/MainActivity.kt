@@ -60,7 +60,13 @@ class MainActivity : AppCompatActivity() {
                 99 -> {
                     memo.datetime = System.currentTimeMillis()
                     helper.insertMemo(memo)
-
+                    adapter.listData.clear()
+                    adapter.listData.addAll(helper.selectMemo())
+                    adapter.notifyDataSetChanged()
+                }
+                100 -> {
+                    memo.datetime = System.currentTimeMillis()
+                    helper.updateMemo(memo)
                     adapter.listData.clear()
                     adapter.listData.addAll(helper.selectMemo())
                     adapter.notifyDataSetChanged()

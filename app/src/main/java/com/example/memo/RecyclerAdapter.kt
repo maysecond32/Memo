@@ -1,5 +1,7 @@
 package com.example.memo
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +53,12 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.Holder>() {
             this.mMemo = memo
 
             itemView.setOnClickListener {
-                Toast.makeText(itemView?.context, "클릭된 아이템 = ${textTitle.text.toString()}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "클릭된 아이템 = ${textTitle.text.toString()}", Toast.LENGTH_SHORT).show()
+
+                val context = itemView.context as Activity
+                val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra("memo", memo)
+                context.startActivityForResult(intent, 100)
             }
         }
     }
